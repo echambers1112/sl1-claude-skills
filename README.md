@@ -25,22 +25,25 @@ This plugin gives Claude Code the institutional knowledge to navigate SL1's dual
 ## Prerequisites
 
 1. **Claude Code** with plugin support
-2. **Playwright MCP plugin** installed and configured — this skill uses browser automation tools (`browser_navigate`, `browser_snapshot`, `browser_click`, etc.)
+2. **Playwright MCP plugin** — this skill drives SL1's web UI via browser automation. Install it first:
+   ```bash
+   claude plugin install playwright@claude-plugins-official
+   ```
 3. **Network access** to your SL1 instance from where Claude Code is running
 4. **SL1 credentials** (username/password) — the skill will ask for these at runtime
 
 ## Installation
 
 ```bash
-# Add the marketplace (from GitHub)
+# 1. Add the marketplace
 claude plugin marketplace add echambers1112/sl1-claude-skills
 
-# Or add from a local clone
-claude plugin marketplace add /path/to/sl1-claude-skills
-
-# Install the plugin
-claude plugin install sl1-claude-skills@sl1-claude-skills
+# 2. Install the plugin
+#    Note: If you get a "cross-device link" error, prefix with TMPDIR=~/.claude/tmp
+TMPDIR=~/.claude/tmp claude plugin install sl1-claude-skills@sl1-claude-skills
 ```
+
+Restart Claude Code after installing. The skill will appear as `/sl1-claude-skills:sl1-da-manager` in the `/` menu.
 
 ## Usage
 
