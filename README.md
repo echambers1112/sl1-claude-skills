@@ -32,11 +32,14 @@ This plugin gives Claude Code the institutional knowledge to navigate SL1's dual
 ## Installation
 
 ```bash
-# Install the plugin
-claude plugin install /path/to/sl1-claude-skills
+# Add the marketplace (from GitHub)
+claude plugin marketplace add echambers1112/sl1-claude-skills
 
-# Or from GitHub
-claude plugin install https://github.com/echambers/sl1-claude-skills
+# Or add from a local clone
+claude plugin marketplace add /path/to/sl1-claude-skills
+
+# Install the plugin
+claude plugin install sl1-claude-skills@sl1-claude-skills
 ```
 
 ## Usage
@@ -69,20 +72,29 @@ Invoke the skill with the SL1 host URL and an action description:
 /sl1-claude-skills:sl1-da-manager https://52.11.87.56 create credential for 172.31.11.45:8000
 ```
 
-## Skill Structure
+## Repo Structure
 
 ```
-skills/sl1-da-manager/
-├── SKILL.md                        # Core workflow and action routing
-├── references/
-│   ├── sl1-navigation.md           # Dual UI architecture, URLs, iframe handling
-│   ├── sl1-configuration.md        # DA fields, snippet code, collection objects, labels
-│   └── sl1-troubleshooting.md      # Diagnostic decision tree, common errors
-└── examples/
-    ├── snippet-default.py          # Default Snippet Python boilerplate
-    ├── snippet-duration.yml        # Duration collection object (Gauge, seconds)
-    ├── snippet-label.yml           # Label collection object (Class Type 104)
-    └── snippet-status.yml          # Status collection object (Gauge, pass/fail)
+sl1-claude-skills/
+├── .claude-plugin/
+│   ├── plugin.json                 # Plugin manifest
+│   └── marketplace.json            # Marketplace manifest (for installation)
+├── plugins/sl1-claude-skills/
+│   ├── .claude-plugin/
+│   │   └── plugin.json             # Plugin entry point
+│   └── skills/sl1-da-manager/
+│       ├── SKILL.md                # Core workflow and action routing
+│       ├── references/
+│       │   ├── sl1-navigation.md   # Dual UI architecture, URLs, iframe handling
+│       │   ├── sl1-configuration.md # DA fields, snippet code, collection objects, labels
+│       │   └── sl1-troubleshooting.md # Diagnostic decision tree, common errors
+│       └── examples/
+│           ├── snippet-default.py  # Default Snippet Python boilerplate
+│           ├── snippet-duration.yml # Duration collection object (Gauge, seconds)
+│           ├── snippet-label.yml   # Label collection object (Class Type 104)
+│           └── snippet-status.yml  # Status collection object (Gauge, pass/fail)
+├── README.md
+└── LICENSE
 ```
 
 ## Key Concepts

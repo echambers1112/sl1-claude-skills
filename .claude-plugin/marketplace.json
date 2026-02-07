@@ -1,0 +1,18 @@
+{
+  "name": "sl1-claude-skills",
+  "owner": {
+    "name": "echambers"
+  },
+  "metadata": {
+    "description": "Claude Code skills for ScienceLogic SL1 administration",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "sl1-claude-skills",
+      "source": "./plugins/sl1-claude-skills",
+      "description": "SL1 Dynamic Application management via Playwright MCP browser automation",
+      "version": "0.1.0"
+    }
+  ]
+}
