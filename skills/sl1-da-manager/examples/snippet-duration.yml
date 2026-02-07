@@ -1,0 +1,29 @@
+# SL1 Snippet Argument — Duration Collection Object
+#
+# Collects step execution duration in seconds.
+# Each test step becomes a separate indexed collection object.
+#
+# Collection Object Configuration:
+#   Object Name:  Duration
+#   Class Type:   Gauge
+#   Group:        0
+#   Snippet:      Default Snippet
+#
+# Replace {CONTAINER_IP} with the synth-monitor container's IP address.
+# Replace {GROUP} with the test group name (e.g., "device-health", "checkout").
+#
+# Example output:
+#   checkout_transaction__login:            2.34
+#   checkout_transaction__navigate:         1.12
+#   checkout_transaction__verify_sales_tax: 0.34
+
+low_code:
+  version: 2
+  steps:
+    - http:
+        method: get
+        url: "http://{CONTAINER_IP}:8000/api/results/latest?group={GROUP}"
+    - json
+    - jmespath:
+        value: "steps[].{_index: step_name, _value: duration_s}"
+        index: true

@@ -1,0 +1,33 @@
+# SL1 Snippet Argument — Label Collection Object
+#
+# Provides human-readable display names for Performance Metrics chart legends.
+# Without this, charts show "Duration [CRC_hash]" instead of step names.
+#
+# Collection Object Configuration:
+#   Object Name:  Step Name
+#   Class Type:   Label (Always Polled) [104]    ← NOT Gauge!
+#   Group:        0                               ← Must match Duration's group
+#   Snippet:      Default Snippet
+#
+# IMPORTANT: Creating this Collection Object is necessary but NOT sufficient.
+# You must ALSO configure the Presentation Object Label Group in the classic UI.
+# See references/sl1-configuration.md "Three-Layer Label Linkage" section.
+#
+# Replace {CONTAINER_IP} with the synth-monitor container's IP address.
+# Replace {GROUP} with the test group name (e.g., "device-health", "checkout").
+#
+# Example output:
+#   checkout_transaction__login:            "Checkout Transaction > Login"
+#   checkout_transaction__navigate:         "Checkout Transaction > Navigate"
+#   checkout_transaction__verify_sales_tax: "Checkout Transaction > Verify Sales Tax"
+
+low_code:
+  version: 2
+  steps:
+    - http:
+        method: get
+        url: "http://{CONTAINER_IP}:8000/api/results/latest?group={GROUP}"
+    - json
+    - jmespath:
+        value: "steps[].{_index: step_name, _value: display_name}"
+        index: true

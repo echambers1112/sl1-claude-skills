@@ -1,0 +1,35 @@
+# SL1 Snippet Argument — Status Collection Object
+#
+# Collects pass/fail status for each test step.
+# Values: 1 = passed, 0 = failed (numeric for SL1 thresholds).
+#
+# Collection Object Configuration:
+#   Object Name:  Status
+#   Class Type:   Gauge
+#   Group:        0
+#   Snippet:      Default Snippet
+#
+# Recommended Thresholds:
+#   Critical: value == 0   (step failed)
+#
+# This is typically set up as a separate Dynamic Application from Duration,
+# so that Duration and Status have independent poll frequencies and thresholds.
+#
+# Replace {CONTAINER_IP} with the synth-monitor container's IP address.
+# Replace {GROUP} with the test group name (e.g., "device-health", "checkout").
+#
+# Example output:
+#   checkout_transaction__login:            1
+#   checkout_transaction__navigate:         1
+#   checkout_transaction__verify_sales_tax: 0
+
+low_code:
+  version: 2
+  steps:
+    - http:
+        method: get
+        url: "http://{CONTAINER_IP}:8000/api/results/latest?group={GROUP}"
+    - json
+    - jmespath:
+        value: "steps[].{_index: step_name, _value: status}"
+        index: true

@@ -1,0 +1,11 @@
+{
+  "name": "sl1-claude-skills",
+  "description": "Claude Code skills for ScienceLogic SL1 administration via Playwright MCP",
+  "version": "0.1.0",
+  "author": {
+    "name": "echambers"
+  },
+  "license": "MIT",
+  "keywords": ["sl1", "sciencelogic", "monitoring", "playwright", "dynamic-applications"],
+  "skills": "./skills/"
+}
