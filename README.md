@@ -57,22 +57,22 @@ Invoke the skill with the SL1 host URL and an action description:
 
 ```bash
 # Create a new Dynamic Application
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 create DA "Synth Monitor - Checkout" for group checkout
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 create DA "Synth Monitor - Checkout" for group checkout
 
 # Fix CRC hash labels on charts
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 fix labels for device 8
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 fix labels for device 8
 
 # Run a dry-run collection
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 run collection on virtual device "Synth Monitor - Production"
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 run collection on virtual device "Synth Monitor - Production"
 
 # Check Performance Metrics
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 check performance metrics for device 8
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 check performance metrics for device 8
 
 # Verify label configuration
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 verify labels for device 8
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 verify labels for device 8
 
 # Create a credential
-/sl1-claude-skills:sl1-da-manager https://52.11.87.56 create credential for 172.31.11.45:8000
+/sl1-claude-skills:sl1-da-manager https://52.257.257.56 create credential for 172.31.11.45:8000
 ```
 
 ## Repo Structure
@@ -114,7 +114,7 @@ This is the most common issue when setting up SL1 integrations. The skill knows 
 
 ### Synth Monitor API Contract
 
-The skill is designed to work with the [synth-monitor](https://github.com/echambers/scilo-synth-monitor) API endpoint:
+The skill is designed to work with the ScienceLogic Skylar One (SL1) monitoring system:
 
 ```
 GET /api/results/latest?group={group}
